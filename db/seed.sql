@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS auto_u_v_records;
+DROP TABLE IF EXISTS auto_work_type;
 DROP TABLE IF EXISTS auto_parts;
 DROP TABLE IF EXISTS auto_u_auth;
 DROP TABLE IF EXISTS auto_u_profiles;
@@ -44,13 +45,27 @@ CREATE TABLE auto_parts (
     name VARCHAR(200) 
 );
 
+CREATE TABLE auto_work_type (
+    id SERIAL PRIMARY KEY,
+    work_type TEXT
+);
+
 CREATE TABLE auto_u_v_records (
     id SERIAL PRIMARY KEY,
     vehicle_id VARCHAR(200) REFERENCES auto_u_vehicles(VIN),
-    work_type TEXT,
+    work_type INT REFERENCES auto_work_type(id),
     part INT REFERENCES auto_parts(id), 
     miles INT
 );
+
+INSERT INTO auto_work_type (work_type)
+VALUES
+('Clean'),
+('Inspect'),
+('Install'),
+('Repair'),
+('Replacement'),
+('Other');
 
 
 INSERT INTO auto_parts (category, name)
@@ -73,8 +88,9 @@ INSERT INTO auto_u_vehicles (VIN, user_id, make, model, year)
 VALUES ('WRAF3453AGJ435ADFF3TSDSGS', 1, 'Nissan', 'Sentra', 1989 );
 
 INSERT INTO auto_u_v_records (vehicle_id, work_type, part, miles)
-VALUES ('WRAF3453AGJ435ADFF3TSDSGS', 'Repair', 1, 29424);
+VALUES ('WRAF3453AGJ435ADFF3TSDSGS', 5, 1, 29424);
 
 
-SELECT auto_u_v_records.vehicle_id, auto_u_v_records.work_type, auto_parts.category, auto_parts.name FROM auto_u_v_records
-INNER JOIN auto_parts ON auto_u_v_records.id = auto_parts.id;
+SELECT auto_u_v_records.vehicle_id, auto_u_v_records.miles, auto_work_type.work_type, auto_parts.category, auto_parts.name  FROM auto_u_v_records
+INNER JOIN auto_parts ON auto_u_v_records.part = auto_parts.id
+INNER JOIN auto_work_type on auto_u_v_records.work_type = auto_work_type.id;
