@@ -31,8 +31,8 @@ CREATE TABLE auto_u_profiles (
 );
 
 CREATE TABLE auto_u_vehicles (
-    id SERIAL,
-    VIN VARCHAR(200) UNIQUE PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    VIN VARCHAR(200) UNIQUE,
     user_id INT REFERENCES auto_users(id),
     make TEXT NOT NULL,
     model VARCHAR(100) NOT NULL,
