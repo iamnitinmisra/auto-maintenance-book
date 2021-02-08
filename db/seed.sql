@@ -9,12 +9,7 @@ DROP TABLE IF EXISTS auto_users;
 
 CREATE TABLE auto_users (
     id SERIAL PRIMARY KEY,
-    user_email VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE auto_u_auth (
-    id SERIAL PRIMARY KEY,
-    user_id INT UNIQUE REFERENCES auto_users(id),
+    user_email VARCHAR(100) NOT NULL,
     hash TEXT
 );
 
@@ -75,11 +70,8 @@ VALUES
 ('Belts', 'Alternator'),
 ('Belts', 'Timing');
 
-INSERT INTO auto_users (user_email)
-VALUES ('n@m.com');
-
-INSERT INTO auto_u_auth (user_id, hash)
-VALUES (1, 'DSFGHSRJFG');
+INSERT INTO auto_users (user_email, hash)
+VALUES ('n@m.com', 'DSFGHSRJFG');
 
 INSERT INTO auto_u_profiles (user_id, first_name, last_name)
 VALUES (1, 'Nitin', 'Misra');
