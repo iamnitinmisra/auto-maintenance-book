@@ -15,7 +15,7 @@ CREATE TABLE auto_users (
 
 CREATE TABLE auto_u_profiles (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES auto_users(id),
+    user_id INT REFERENCES auto_users(id) on delete cascade,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     street1 VARCHAR(1000),
@@ -28,7 +28,7 @@ CREATE TABLE auto_u_profiles (
 CREATE TABLE auto_u_vehicles (
     id SERIAL PRIMARY KEY,
     VIN VARCHAR(200) UNIQUE,
-    user_id INT REFERENCES auto_users(id),
+    user_id INT REFERENCES auto_users(id) on delete cascade,
     make TEXT NOT NULL,
     model VARCHAR(100) NOT NULL,
     year INT NOT NULL
@@ -47,7 +47,7 @@ CREATE TABLE auto_work_type (
 
 CREATE TABLE auto_u_v_records (
     id SERIAL PRIMARY KEY,
-    vehicle_id VARCHAR(200) REFERENCES auto_u_vehicles(VIN),
+    vehicle_id VARCHAR(200) REFERENCES auto_u_vehicles(VIN) on delete cascade,
     work_type INT REFERENCES auto_work_type(id),
     part INT REFERENCES auto_parts(id), 
     miles INT

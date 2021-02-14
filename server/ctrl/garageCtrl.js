@@ -12,21 +12,27 @@ module.exports = {
     const db = req.app.get("db");
     const { id } = req.session.user;
     const { VIN, make, model, year } = req.body;
-    const cars = await db.garage.add_to_garage(VIN, id, make, model, year);
-    if (!cars.length) {
-      return res.status(444).send({
-        error:
-          "An unexpected error occured when trying to add your car to the garage",
-      });
+    try {
+      const cars = await db.garage.add_to_garage(VIN, id, make, model, year);
+      res.status(201).send(cars);
+    } catch (err) {
+      if (err) {
+        console.error(`${err.severity}: ${err.detail}`);
+        return res.status(444).send(`${err.severity}: ${err.detail}`);
+      }
     }
-    res.status(200).send(cars);
   },
   removeFromGarage: (req, res) => {
     const db = req.app.get("db");
     const { id } = req.session.user;
     const { VIN } = req.body;
-    db.garage
-      .remove_from_garage(VIN, id)
-      .then((response) => console.log(response));
+    db.garage.check_vin(VIN).then((matchingVIN) => {
+      //check to see if the user has a car by that VIN and if so remove it
+      !matchingVIN.length
+        ? res.status(204).send({ error: "VIN not found" })
+        : db.garage
+            .remove_from_garage(VIN, id)
+            .then((newGarage) => res.status(202).send(newGarage));
+    });
   },
 };
