@@ -13,15 +13,13 @@ module.exports = {
     if (!authenticated) {
       return res.status(403).send("Incorrect email or password");
     }
-    delete existingUser.password_hash;
-    delete existingUser.user_id;
+    delete existingUser.hash;
     console.log("-> Login Detected <-");
 
     req.session.user = existingUser;
 
     res.status(200).send(req.session.user);
   },
-
   register: async (req, res) => {
     const db = req.app.get("db");
     const { email, pw } = req.body;
@@ -37,7 +35,7 @@ module.exports = {
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(pw, salt);
-    const [newUser] = db.auth.register([email, hash]);
+    const [newUser] = await db.auth.register([email, hash]);
     console.log("** A NEW USER HAS SUCCESSFULLY SIGNED UP **");
 
     if (newUser) {
