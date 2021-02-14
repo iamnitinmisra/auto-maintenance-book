@@ -27,12 +27,12 @@ module.exports = {
     const { id } = req.session.user;
     const { VIN } = req.body;
     db.garage.check_vin(VIN).then((matchingVIN) => {
-      //check to see if the user has a car by that VIN and if so remove it
+      //check to see if the user has a car by that VIN and if so remove it and send the update garage
       !matchingVIN.length
         ? res.status(204).send({ error: "VIN not found" })
         : db.garage
             .remove_from_garage(VIN, id)
-            .then((newGarage) => res.status(202).send(newGarage));
+            .then((updatedGarage) => res.status(202).send(updatedGarage));
     });
   },
 };
