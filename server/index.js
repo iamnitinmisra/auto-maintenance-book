@@ -5,7 +5,11 @@ const session = require("express-session");
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { login, logout, register, getSession } = require("./ctrl/authCtrl");
-
+const {
+  allGarageCars,
+  addToGarage,
+  removeFromGarage,
+} = require("./ctrl/garageCtrl");
 const app = express();
 
 app.use(express.json());
@@ -19,13 +23,16 @@ app.use(
   })
 );
 
+//authorization
 app.post("/auth/login", login);
 app.post("/auth/register", register);
 app.get("/auth/session", getSession);
 app.get("/auth/logout", logout);
 
-//user_id required
-
+//login required
+app.get("/garage/", allGarageCars);
+app.post("/garage/add", addToGarage);
+app.delete("/garage/remove", removeFromGarage);
 
 massive({
   connectionString: CONNECTION_STRING,
