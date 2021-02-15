@@ -1,0 +1,10 @@
+#auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background: green;
+}
