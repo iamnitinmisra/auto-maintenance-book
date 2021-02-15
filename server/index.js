@@ -9,7 +9,11 @@ const {
   allGarageCars,
   addToGarage,
   removeFromGarage,
+  addVehicleRecord,
+  vehicleRecords,
 } = require("./ctrl/garageCtrl");
+const { updateProfile } = require("./ctrl/userCtrl");
+
 const app = express();
 
 app.use(express.json());
@@ -31,8 +35,11 @@ app.get("/auth/logout", logout);
 
 //login required
 app.get("/garage/", allGarageCars);
+app.get("/garage/records", vehicleRecords);
 app.post("/garage/add", addToGarage);
+app.post("/garage/record", addVehicleRecord);
 app.delete("/garage/remove", removeFromGarage);
+app.put("/user/profile", updateProfile);
 
 massive({
   connectionString: CONNECTION_STRING,

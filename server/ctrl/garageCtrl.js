@@ -35,4 +35,26 @@ module.exports = {
             .then((updatedGarage) => res.status(202).send(updatedGarage));
     });
   },
+  vehicleRecords: (req, res) => {
+    const db = req.app.get("db");
+    const { vid } = req.query;
+    db.garage.get_vehicle_records(vid).then((records) => {
+      res.status(200).send(records);
+    });
+  },
+
+  addVehicleRecord: (req, res) => {
+    const db = req.app.get("db");
+    const { vid, workType, part, mileage } = req.body;
+    db.garage
+      .add_vehicle_record(vid, workType, part, mileage)
+      .then(
+        db.garage.get_vehicle_records(vid).then((records) => {
+          res.status(200).send(records);
+        })
+      )
+      .catch((err) => {
+        res.status(444).send({ error: "That car dont exist, mate" });
+      });
+  },
 };
