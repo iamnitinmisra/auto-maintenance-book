@@ -37,7 +37,7 @@ module.exports = {
   },
   vehicleRecords: (req, res) => {
     const db = req.app.get("db");
-    const { vid } = req.query;
+    const { vid } = req.body;
     db.garage.get_vehicle_records(vid).then((records) => {
       res.status(200).send(records);
     });

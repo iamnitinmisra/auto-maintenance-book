@@ -34,7 +34,7 @@ app.get("/auth/session", getSession);
 app.get("/auth/logout", logout);
 
 //login required
-app.get("/garage/", allGarageCars);
+app.get("/garage", allGarageCars);
 app.get("/garage/records", vehicleRecords);
 app.post("/garage/add", addToGarage);
 app.post("/garage/record", addVehicleRecord);
