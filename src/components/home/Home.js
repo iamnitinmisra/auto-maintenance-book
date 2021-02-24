@@ -9,23 +9,26 @@ function Home(props) {
 
   const [garageCars, setGarageCars] = useState([]);
 
-  //check to see if user is logged in on the server, and if so setup redux, if not push to auth page
+  //check to see if user is logged in on the server, and if so setup redux it
   useEffect(() => {
-    axios.get("/auth/session").then((user) => setUser(user.data));
-    if (!user) history.push("/auth");
-  }, []);
-
-  //get the user's garage
-  useEffect(() => {
-    axios.get("/garage").then((fleet) => {
-      setGarageCars(fleet.data);
+    axios.get("/auth/session").then((user) => {
+      if (user.data) setUser(user.data);
     });
-  }, []);
+  }, [setUser]);
 
-  console.log(garageCars);
+  //get the user's garage if they are logged in or push them to the login page if they are not
+  useEffect(() => {
+    if (user) {
+      axios.get("/garage").then((fleet) => {
+        setGarageCars(fleet.data);
+      });
+    } else {
+      history.push("/auth");
+    }
+  }, [user, history]);
 
   const Vehicles = garageCars.map((vehicle) => {
-    return <Vehicle vehicles={vehicle} />;
+    return <Vehicle vehicles={vehicle} key={vehicle.id} />;
   });
 
   return (

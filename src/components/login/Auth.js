@@ -9,8 +9,6 @@ function Auth(props) {
   const [email, emailInput] = useInput({ type: "text", ph: "email" });
   const [pw, passInput] = useInput({ type: "text", ph: "password" });
 
-  console.log(props.user);
-
   //check to see if user is logged in, if so push to home page
   useEffect(() => {
     if (props.user) props.history.push("/");

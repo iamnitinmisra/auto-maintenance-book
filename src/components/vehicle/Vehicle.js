@@ -1,5 +1,4 @@
 const Vehicle = (props) => {
-  console.log(props);
   const { make, model, year } = props.vehicles;
   return (
     <div>
