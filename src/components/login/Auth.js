@@ -28,7 +28,7 @@ function Auth(props) {
       <form id="auth-form" onSubmit={(e) => login(e)}>
         {emailInput}
         {passInput}
-        <input type="submit"></input>
+        <input type="submit" />
       </form>
     </div>
   );

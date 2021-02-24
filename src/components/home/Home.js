@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { setUser } from "../../redux/reducers/userReducer";
+import AddVehicle from "../add/AddVehicle";
 import Vehicle from "../vehicle/Vehicle";
 
 function Home(props) {
   const { user, setUser, history } = props;
-
   const [garageCars, setGarageCars] = useState([]);
 
   //check to see if user is logged in on the server, and if so setup redux it
@@ -27,12 +27,19 @@ function Home(props) {
     }
   }, [user, history]);
 
+  createCar = async (e, newCar) => {
+    e.preventDefault()
+    const newFleet = axios.post('/garage/add', newCar)
+    setGarageCars(newFleet)
+  }
+
   const Vehicles = garageCars.map((vehicle) => {
     return <Vehicle vehicles={vehicle} key={vehicle.id} />;
   });
 
   return (
     <div id="home-container">
+      <AddVehicle createCar={createCar}/>
       <div>Your Vehicle's</div>
       <div>{Vehicles}</div>
     </div>
