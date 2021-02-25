@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUser } from "../../redux/reducers/userReducer";
 import AddVehicle from "../add/AddVehicle";
@@ -30,12 +31,19 @@ function Home(props) {
   const createCar = async (e, newCar) => {
     e.preventDefault();
     const newFleet = await axios.post("/garage/add", newCar);
+    // if the VIN isnt already apart of the db
     if (!newFleet.data.error) setGarageCars(newFleet.data);
     else console.error(newFleet.data.error);
   };
 
+  // map over the garage and create the fleet list
   const Vehicles = garageCars.map((vehicle) => {
-    return <Vehicle vehicles={vehicle} key={vehicle.id} />;
+    return (
+      // <div>{console.log(vehicle)}</div>
+      <Link to={`/maintenancelog/${vehicle.id}`}>
+        <Vehicle vehicles={vehicle} key={vehicle.id} />;
+      </Link>
+    );
   });
 
   return (

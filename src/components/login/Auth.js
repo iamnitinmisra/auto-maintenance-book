@@ -11,7 +11,7 @@ function Auth(props) {
 
   //check to see if user is logged in, if so push to home page
   useEffect(() => {
-    if (props.user) props.history.push("/");
+    if (props.user) props.history.push("/"); // change this to
   });
 
   const login = (e) => {
