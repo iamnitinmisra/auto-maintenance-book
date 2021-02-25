@@ -13,11 +13,19 @@ module.exports = {
     const { id } = req.session.user;
     const { VIN, make, model, year } = req.body;
     try {
-      const cars = await db.garage.add_to_garage(VIN, id, make, model, year);
-      res.status(201).send(cars);
+      const car = await db.garage.check_vin(VIN);
+      if (!car.length) {
+        const cars = await db.garage.add_to_garage(VIN, id, make, model, year);
+        res.status(201).send(cars);
+      } else {
+        res
+          .status(200)
+          .send({ error: "Vehicle already exists in the database" });
+      }
     } catch (err) {
       if (err) {
         console.error(`${err.severity}: ${err.detail}`);
+        console.error(err);
         return res.status(444).send(`${err.severity}: ${err.detail}`);
       }
     }

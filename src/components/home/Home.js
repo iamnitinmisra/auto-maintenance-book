@@ -27,11 +27,12 @@ function Home(props) {
     }
   }, [user, history]);
 
-  createCar = async (e, newCar) => {
-    e.preventDefault()
-    const newFleet = axios.post('/garage/add', newCar)
-    setGarageCars(newFleet)
-  }
+  const createCar = async (e, newCar) => {
+    e.preventDefault();
+    const newFleet = await axios.post("/garage/add", newCar);
+    if (!newFleet.data.error) setGarageCars(newFleet.data);
+    else console.error(newFleet.data.error);
+  };
 
   const Vehicles = garageCars.map((vehicle) => {
     return <Vehicle vehicles={vehicle} key={vehicle.id} />;
@@ -39,7 +40,7 @@ function Home(props) {
 
   return (
     <div id="home-container">
-      <AddVehicle createCar={createCar}/>
+      <AddVehicle createCar={createCar} />
       <div>Your Vehicle's</div>
       <div>{Vehicles}</div>
     </div>
