@@ -15,7 +15,8 @@ const Log = (props) => {
   }, [vid]);
 
   // add the new record to the database
-  const addRecord = async (workType, part, mileage) => {
+  const addRecord = async (e, workType, part, mileage) => {
+    e.preventDefault();
     const details = { vid, workType, part, mileage };
     const newRecord = await axios.post("/garage/record", details);
     setCarRecords(newRecord);

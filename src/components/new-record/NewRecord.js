@@ -5,7 +5,7 @@ import { useInput, useSelect } from "../../Hooks";
 const NewRecord = (props) => {
   const [mileage, mileageInput] = useInput({ type: "number", ph: "mileage" });
   const [dropdowns, setDropdowns] = useState([]);
-  const [work, workSelect] = useSelect(dropdowns);
+  const [work, workSelect] = useSelect("Type of Work", dropdowns);
   const [part, partInput] = useInput({
     type: "text",
     ph: "Part # (if applicable)",
@@ -22,7 +22,7 @@ const NewRecord = (props) => {
   }, []);
 
   return (
-    <form onSubmit={() => props.addRecord(work, part, mileage)}>
+    <form onSubmit={(e) => props.addRecord(e, work, part, mileage)}>
       {workSelect}
       {partInput}
       {mileageInput}

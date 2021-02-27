@@ -17,10 +17,10 @@ export function useInput({ type, ph }) {
   return [value, input];
 }
 
-// Select tag hook requires an array parameter with each dropdown option
-export function useSelect(dropdown) {
+// Select tag hook requires a default option and an array parameter with each dropdown option
+export function useSelect(defaultMessage, dropdowns) {
   const [option, setOption] = useState("");
-  const options = dropdown.map((options, i) => {
+  const options = dropdowns.map((options, i) => {
     return (
       <option key={i} value={options}>
         {options}
@@ -30,6 +30,7 @@ export function useSelect(dropdown) {
 
   const select = (
     <select value={option} onChange={(e) => setOption(e.target.value)}>
+      <option value="" selected disabled hidden>{`${defaultMessage}`}</option>
       {options}
     </select>
   );
