@@ -17,9 +17,9 @@ module.exports = {
       const car = await db.garage.check_vin(VIN);
       if (!car.length) {
         const cars = await db.garage.add_to_garage(VIN, id, make, model, year);
-        res.status(201).send(cars);
+        return res.status(201).send(cars);
       } else {
-        res
+        return res
           .status(200)
           .send({ error: "Vehicle already exists in the database" });
       }
@@ -35,11 +35,13 @@ module.exports = {
   addVehicleRecord: (req, res) => {
     const db = req.app.get("db");
     const { vid, workType, part, mileage } = req.body;
+    console.log(vid, workType, part, mileage);
     db.garage
       .add_vehicle_record(vid, workType, part, mileage)
       .then(
         db.garage.get_vehicle_records(vid).then((records) => {
-          res.status(200).send(records);
+          console.log(records);
+          return res.status(200).send(records);
         })
       )
       .catch((err) => {

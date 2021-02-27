@@ -4,6 +4,7 @@ import { useState } from "react";
 //requires input type and placeholder
 export function useInput({ type, ph }) {
   const [value, setValue] = useState("");
+
   const input = (
     <input
       // style={{ width: "100%" }}
@@ -20,16 +21,17 @@ export function useInput({ type, ph }) {
 // Select tag hook requires a default option and an array parameter with each dropdown option
 export function useSelect(defaultMessage, dropdowns) {
   const [option, setOption] = useState("");
-  const options = dropdowns.map((options, i) => {
-    return (
-      <option key={i} value={options}>
-        {options}
-      </option>
-    );
+  const options = dropdowns.map((options) => {
+    return <option key={options.id}>{options.work_type}</option>;
   });
 
   const select = (
-    <select value={option} onChange={(e) => setOption(e.target.value)}>
+    <select
+      defaultValue={defaultMessage}
+      onChange={(e) => {
+        setOption(e.target.selectedIndex);
+      }}
+    >
       <option value="" selected disabled hidden>{`${defaultMessage}`}</option>
       {options}
     </select>

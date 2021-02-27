@@ -14,10 +14,11 @@ const NewRecord = (props) => {
   // get the list of all drop down options relevent to this component
   useEffect(() => {
     axios.get("/dropdowns").then((list) => {
-      const optionsArray = list.data.map((options) => {
-        return options.work_type;
-      });
-      setDropdowns(optionsArray);
+      // const optionsArray = list.data.map((options) => {
+      //   return options.work_type;
+      // });
+      // setDropdowns(optionsArray);
+      setDropdowns(list.data);
     });
   }, []);
 
