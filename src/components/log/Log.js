@@ -9,18 +9,19 @@ const Log = (props) => {
   useEffect(() => {
     async function getData() {
       const details = await axios.get(`/garage/records?vid=${vid}`);
-      console.log(details.data);
       setCarRecords(details.data);
     }
     getData();
   }, [vid]);
 
+  // add the new record to the database
   const addRecord = async (workType, part, mileage) => {
     const details = { vid, workType, part, mileage };
     const newRecord = await axios.post("/garage/record", details);
     setCarRecords(newRecord);
   };
 
+  // map over the list of records for a specific vehicle
   const mappedLog = carRecords.map((entry) => {
     return <div></div>;
   });

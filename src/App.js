@@ -19,8 +19,6 @@ function App(props) {
     }
   }, [setUser, history, user]);
 
-  console.log(props);
-
   return <div className="App">{routes}</div>;
 }
 

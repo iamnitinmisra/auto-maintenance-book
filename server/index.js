@@ -13,6 +13,7 @@ const {
   vehicleRecords,
 } = require("./ctrl/garageCtrl");
 const { updateProfile } = require("./ctrl/userCtrl");
+const { dropdowns } = require("./ctrl/appCtrl");
 const { checkLogin } = require("./middleware/loginMiddleware");
 
 const app = express();
@@ -36,13 +37,13 @@ app.get("/auth/logout", logout);
 
 //login required
 app.get("/garage", checkLogin, allGarageCars);
-app.post("/garage/add", checkLogin, addToGarage);
+app.post("/garage/add", addToGarage);
 app.post("/garage/record", addVehicleRecord);
-app.get("/garage/records", vehicleRecords);
-app.delete("/garage/record/:rid", checkLogin, removeFromGarage);
+app.get("/garage/records", checkLogin, vehicleRecords);
+app.delete("/garage/record/:rid", removeFromGarage);
 app.put("/user/profile", updateProfile);
 
-app.get("/dropdowns");
+app.get("/dropdowns", checkLogin, dropdowns);
 
 massive({
   connectionString: CONNECTION_STRING,
