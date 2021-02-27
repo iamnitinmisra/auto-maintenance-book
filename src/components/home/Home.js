@@ -1,32 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { setUser } from "../../redux/reducers/userReducer";
 import AddVehicle from "../add/AddVehicle";
 import Vehicle from "../vehicle/Vehicle";
 
-function Home(props) {
-  const { user, setUser, history } = props;
+function Home() {
   const [garageCars, setGarageCars] = useState([]);
 
-  //check to see if user is logged in on the server, and if so setup redux it
+  //get the user's fleet data
   useEffect(() => {
-    axios.get("/auth/session").then((user) => {
-      if (user.data) setUser(user.data);
+    axios.get("/garage").then((fleet) => {
+      setGarageCars(fleet.data);
     });
-  }, [setUser]);
-
-  //get the user's garage if they are logged in or push them to the login page if they are not
-  useEffect(() => {
-    if (user) {
-      axios.get("/garage").then((fleet) => {
-        setGarageCars(fleet.data);
-      });
-    } else {
-      history.push("/auth");
-    }
-  }, [user, history]);
+  }, []);
 
   const createCar = async (e, newCar) => {
     e.preventDefault();
@@ -39,9 +25,8 @@ function Home(props) {
   // map over the garage and create the fleet list
   const Vehicles = garageCars.map((vehicle) => {
     return (
-      // <div>{console.log(vehicle)}</div>
-      <Link to={`/maintenancelog/${vehicle.id}`}>
-        <Vehicle vehicles={vehicle} key={vehicle.id} />;
+      <Link key={vehicle.id} to={`/maintenancelog/${vehicle.id}`}>
+        <Vehicle vehicles={vehicle} />
       </Link>
     );
   });
@@ -55,5 +40,4 @@ function Home(props) {
   );
 }
 
-const mapStateToProps = (reduxState) => reduxState;
-export default connect(mapStateToProps, { setUser })(Home);
+export default Home;

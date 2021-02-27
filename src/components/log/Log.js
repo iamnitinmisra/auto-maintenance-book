@@ -3,30 +3,35 @@ import { useEffect, useState } from "react";
 import NewRecord from "../new-record/NewRecord";
 
 const Log = (props) => {
-  const [carDetails, setCarDetails] = useState([]);
+  const [carRecords, setCarRecords] = useState([]);
+  const { id: vid } = props.match.params;
 
   useEffect(() => {
     async function getData() {
-      const details = await axios.get(
-        `/garage/records?vid=${props.match.params.id}`
-      );
+      const details = await axios.get(`/garage/records?vid=${vid}`);
       console.log(details.data);
-      setCarDetails(details.data);
+      setCarRecords(details.data);
     }
     getData();
-  }, [props.match.params.id]);
+  }, [vid]);
 
-  const mappedLog = carDetails.map((entry) => {
+  const addRecord = async (workType, part, mileage) => {
+    const details = { vid, workType, part, mileage };
+    const newRecord = await axios.post("/garage/record", details);
+    setCarRecords(newRecord);
+  };
+
+  const mappedLog = carRecords.map((entry) => {
     return <div></div>;
   });
 
   return (
     <div>
       <div>
-        <div>New Entry</div>
-        <NewRecord />
+        <div>Add a Record</div>
+        <NewRecord addRecord={addRecord} />
       </div>
-      <div>Car Maintenance Log</div>
+      <div>Maintenance Log</div>
       {mappedLog}
     </div>
   );
