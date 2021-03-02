@@ -7,6 +7,6 @@ export default (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/auth" component={Auth} />
-    <Route path="/maintenancelog/:id" component={Log} />
+    <Route path="/maintenancelog/:vin" component={Log} />
   </Switch>
 );

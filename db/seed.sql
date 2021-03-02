@@ -47,7 +47,7 @@ CREATE TABLE auto_work_type (
 
 CREATE TABLE auto_u_v_records (
     id SERIAL PRIMARY KEY,
-    vehicle_id VARCHAR(200) REFERENCES auto_u_vehicles(VIN) on delete cascade,
+    vehicle_vin VARCHAR(200) REFERENCES auto_u_vehicles(vin) on delete cascade,
     work_type INT REFERENCES auto_work_type(id),
     part INT REFERENCES auto_parts(id), 
     miles INT

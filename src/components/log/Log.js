@@ -4,28 +4,35 @@ import NewRecord from "../new-record/NewRecord";
 
 const Log = (props) => {
   const [carRecords, setCarRecords] = useState([]);
-  const { id: vid } = props.match.params;
+  const { vin } = props.match.params;
 
   useEffect(() => {
     async function getData() {
-      const details = await axios.get(`/garage/records?vid=${vid}`);
+      const details = await axios.get(`/garage/records?vin=${vin}`);
       setCarRecords(details.data);
     }
     getData();
-  }, [vid]);
+  }, [vin]);
 
   // add the new record to the database
   const addRecord = async (e, workType, part, mileage) => {
     e.preventDefault();
-    console.log(workType);
-    const details = { vid, workType, part, mileage };
+    const details = { vin, workType, part, mileage };
     const newRecord = await axios.post("/garage/record", details);
-    setCarRecords(newRecord);
+    console.log(newRecord.data);
+    setCarRecords(newRecord.data);
   };
-
+  console.log(carRecords);
   // map over the list of records for a specific vehicle
   const mappedLog = carRecords.map((entry) => {
-    return <div></div>;
+    return (
+      <div className="vehicle">
+        <div>Work: {entry.work_type}</div>
+        <div>Category: {entry.category}</div>
+        <div>Part: {entry.name}</div>
+        <div>Miles: {entry.miles}</div>
+      </div>
+    );
   });
 
   return (

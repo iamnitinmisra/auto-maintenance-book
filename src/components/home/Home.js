@@ -23,12 +23,10 @@ function Home() {
     else console.error(newFleet.data.error);
   };
 
-  console.log(garageCars);
-
   // map over the garage and create the fleet list
   const vehicles = garageCars.map((vehicle) => {
     return (
-      <Link key={vehicle.id} to={`/maintenancelog/${vehicle.id}`}>
+      <Link key={vehicle.id} to={`/maintenancelog/${vehicle.vin}`}>
         <Vehicle vehicles={vehicle} />
       </Link>
     );
