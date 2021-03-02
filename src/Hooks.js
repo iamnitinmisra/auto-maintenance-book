@@ -19,10 +19,10 @@ export function useInput({ type, ph }) {
 }
 
 // Select tag hook requires a default option and an array parameter with each dropdown option
-export function useSelect(defaultMessage, dropdowns) {
+export function useSelect(defaultMessage, selection) {
   const [option, setOption] = useState("");
-  const options = dropdowns.map((options) => {
-    return <option key={options.id}>{options.work_type}</option>;
+  const options = selection.map((options, i) => {
+    return <option key={i}>{options}</option>;
   });
 
   const select = (

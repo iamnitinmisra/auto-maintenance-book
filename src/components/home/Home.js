@@ -10,20 +10,23 @@ function Home() {
   //get the user's fleet data
   useEffect(() => {
     axios.get("/garage").then((fleet) => {
-      setGarageCars(fleet.data);
+      if (fleet.data) setGarageCars(fleet.data);
     });
   }, []);
 
   const createCar = async (e, newCar) => {
     e.preventDefault();
     const newFleet = await axios.post("/garage/add", newCar);
+    console.log(newFleet.data);
     // if the VIN isnt already apart of the db
     if (!newFleet.data.error) setGarageCars(newFleet.data);
     else console.error(newFleet.data.error);
   };
 
+  console.log(garageCars);
+
   // map over the garage and create the fleet list
-  const Vehicles = garageCars.map((vehicle) => {
+  const vehicles = garageCars.map((vehicle) => {
     return (
       <Link key={vehicle.id} to={`/maintenancelog/${vehicle.id}`}>
         <Vehicle vehicles={vehicle} />
@@ -35,7 +38,7 @@ function Home() {
     <div id="home-container">
       <AddVehicle createCar={createCar} />
       <div>Your Vehicle's</div>
-      <div>{Vehicles}</div>
+      <div>{vehicles}</div>
     </div>
   );
 }

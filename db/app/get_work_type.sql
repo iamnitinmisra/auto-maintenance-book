@@ -1,0 +1,1 @@
+SELECT work_type FROM auto_work_type;

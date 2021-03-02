@@ -70,20 +70,20 @@ VALUES
 ('Belts', 'Alternator'),
 ('Belts', 'Timing');
 
-INSERT INTO auto_users (user_email, hash)
-VALUES ('n@m.com', 'DSFGHSRJFG');
+-- INSERT INTO auto_users (user_email, hash)
+-- VALUES ('n@m.com', 'DSFGHSRJFG');
 
-INSERT INTO auto_u_profiles (user_id, first_name, last_name)
-VALUES (1, 'Nitin', 'Misra');
+-- INSERT INTO auto_u_profiles (user_id, first_name, last_name)
+-- VALUES (1, 'Nitin', 'Misra');
 
-INSERT INTO auto_u_vehicles (VIN, user_id, make, model, year)
-VALUES ('WRAF3453AGJ435ADFF3TSDSGS', 1, 'Nissan', 'Sentra', 1989 );
+-- INSERT INTO auto_u_vehicles (VIN, user_id, make, model, year)
+-- VALUES ('WRAF3453AGJ435ADFF3TSDSGS', 1, 'Nissan', 'Sentra', 1989 );
 
-INSERT INTO auto_u_v_records (vehicle_id, work_type, part, miles)
-VALUES ('WRAF3453AGJ435ADFF3TSDSGS', 5, 1, 29424);
+-- INSERT INTO auto_u_v_records (vehicle_id, work_type, part, miles)
+-- VALUES ('WRAF3453AGJ435ADFF3TSDSGS', 5, 1, 29424);
 
 
-SELECT auto_u_v_records.vehicle_id, auto_u_v_records.miles, auto_work_type.work_type, auto_parts.category, auto_parts.name  FROM auto_u_v_records
-INNER JOIN auto_parts ON auto_u_v_records.part = auto_parts.id
-INNER JOIN auto_work_type on auto_u_v_records.work_type = auto_work_type.id
-WHERE vehicle_id = 'VIN1';
+-- SELECT auto_u_v_records.vehicle_id, auto_u_v_records.miles, auto_work_type.work_type, auto_parts.category, auto_parts.name  FROM auto_u_v_records
+-- INNER JOIN auto_parts ON auto_u_v_records.part = auto_parts.id
+-- INNER JOIN auto_work_type on auto_u_v_records.work_type = auto_work_type.id
+-- WHERE vehicle_id = 'VIN1';

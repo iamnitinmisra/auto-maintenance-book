@@ -40,8 +40,10 @@ module.exports = {
       .add_vehicle_record(vid, workType, part, mileage)
       .then(
         db.garage.get_vehicle_records(vid).then((records) => {
-          console.log(records);
-          return res.status(200).send(records);
+          if (records === ![]) {
+            console.log(records);
+            res.status(200).send(records);
+          }
         })
       )
       .catch((err) => {

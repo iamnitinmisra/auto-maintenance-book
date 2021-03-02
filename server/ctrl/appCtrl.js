@@ -1,8 +1,9 @@
 module.exports = {
-  dropdowns: (req, res) => {
+  dropdowns: async (req, res) => {
     const db = req.app.get("db");
-    db.app.dropdowns().then((options) => {
-      return res.status(200).send(options);
-    });
+    const workTypeOptions = await db.app.get_work_type();
+    const partOptions = await db.app.get_part_options();
+    let options = { workTypeOptions, partOptions };
+    res.status(200).send(options);
   },
 };

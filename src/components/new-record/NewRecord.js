@@ -4,21 +4,22 @@ import { useInput, useSelect } from "../../Hooks";
 
 const NewRecord = (props) => {
   const [mileage, mileageInput] = useInput({ type: "number", ph: "mileage" });
-  const [dropdowns, setDropdowns] = useState([]);
-  const [work, workSelect] = useSelect("Type of Work", dropdowns);
-  const [part, partInput] = useInput({
-    type: "text",
-    ph: "Part # (if applicable)",
-  });
+  const [workTypeOptions, setWorkTypeOptions] = useState([]);
+  const [partOptions, setPartOptions] = useState([]);
+  const [work, workSelect] = useSelect("Type of Work", workTypeOptions);
+  const [part, partInput] = useSelect("Part", partOptions);
 
   // get the list of all drop down options relevent to this component
   useEffect(() => {
-    axios.get("/dropdowns").then((list) => {
-      // const optionsArray = list.data.map((options) => {
-      //   return options.work_type;
-      // });
-      // setDropdowns(optionsArray);
-      setDropdowns(list.data);
+    axios.get("/dropdowns").then((lists) => {
+      const partOptions = lists.data.partOptions.map((options) => {
+        return `${options.category}: ${options.name}`;
+      });
+      const workOptions = lists.data.workTypeOptions.map((options) => {
+        return options.work_type;
+      });
+      setPartOptions(partOptions);
+      setWorkTypeOptions(workOptions);
     });
   }, []);
 
