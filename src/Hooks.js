@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 //input box hook, see auth.js for usage
-//requires input type and placeholder
-export function useInput({ type, ph }) {
+//requires input type, placeholder
+//optional className as cName
+export function useInput({ type, ph, cName }) {
   const [value, setValue] = useState("");
 
   const input = (
     <input
-      // style={{ width: "100%" }}
+      className={cName}
       value={value}
       placeholder={ph}
       onChange={(e) => setValue(e.target.value)}

@@ -1,13 +1,14 @@
 import { useInput } from "../../Hooks";
 import { useEffect } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { setUser } from "../../redux/reducers/userReducer";
+import axios from "axios";
 import "./Auth.css";
 
-function Auth(props) {
+const Auth = (props) => {
   const [email, emailInput] = useInput({ type: "text", ph: "email" });
-  const [pw, passInput] = useInput({ type: "text", ph: "password" });
+  const [pw, passInput] = useInput({ type: "password", ph: "password" });
 
   //check to see if user is logged in, if so push to home page
   useEffect(() => {
@@ -29,10 +30,13 @@ function Auth(props) {
         {emailInput}
         {passInput}
         <input type="submit" />
+        <Link to="/register">
+          <div>Register</div>
+        </Link>
       </form>
     </div>
   );
-}
+};
 
 const mapStateToProps = (reduxState) => reduxState;
 
