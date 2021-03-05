@@ -5,6 +5,7 @@ import { setUser } from "./redux/reducers/userReducer";
 import { withRouter } from "react-router";
 import axios from "axios";
 import routes from "./Routes";
+import Nav from "./components/navigation/Nav";
 
 function App(props) {
   const { user, setUser, history } = props;
@@ -19,7 +20,12 @@ function App(props) {
     }
   }, [setUser, history, user]);
 
-  return <div className="App">{routes}</div>;
+  return (
+    <div className="App">
+      <Nav />
+      {routes}
+    </div>
+  );
 }
 
 const mapStateToProps = (reduxState) => reduxState;
