@@ -2,6 +2,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../redux/reducers/userReducer";
 import { withRouter } from "react-router";
+import "./Nav.css";
 
 const Nav = (props) => {
   const logout = () => {
@@ -12,7 +13,8 @@ const Nav = (props) => {
   };
 
   return (
-    <div>
+    <div id="nav-wrapper">
+      <div>Vehicle Maintenance Log</div>
       <div onClick={logout}>logout</div>
     </div>
   );

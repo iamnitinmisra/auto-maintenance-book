@@ -22,7 +22,6 @@ function App(props) {
 
   return (
     <div className="App">
-      {console.log(props)}
       {props.user ? <Nav /> : null}
       {routes}
     </div>
