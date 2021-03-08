@@ -1,12 +1,14 @@
 import axios from "axios";
-
-import { useState } from "react";
+import { connect } from "react-redux";
+import { setUser } from "../../redux/reducers/userReducer";
 import { withRouter } from "react-router";
-// import { Redirect } from "react-router";
 
 const Nav = (props) => {
   const logout = () => {
-    axios.get("/auth/logout").then((r) => props.history.push("/auth"));
+    axios.get("/auth/logout").then((r) => {
+      props.setUser(null);
+      props.history.push("/auth");
+    });
   };
 
   return (
@@ -16,4 +18,6 @@ const Nav = (props) => {
   );
 };
 
-export default withRouter(Nav);
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, { setUser })(withRouter(Nav));
