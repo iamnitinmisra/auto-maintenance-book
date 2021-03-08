@@ -8,8 +8,8 @@ h2 {
 
 #auth-container {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
     linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
     linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
@@ -36,14 +36,23 @@ h2 {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  background: green;
 }
 
 #register {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   color: grey;
+}
+
+#profile-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+#profile-image {
+  margin-top: 50px;
+  max-width: 500px;
+  max-height: 500px;
 }
 
 .main-title {
@@ -52,4 +61,5 @@ h2 {
   flex-direction: column;
   align-items: center;
   color: whitesmoke;
+  padding-top: 50px;
 }

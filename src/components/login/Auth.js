@@ -31,11 +31,13 @@ const Auth = (props) => {
         <h1>VEHICLE</h1> <h1> MAINTENANCE </h1> <h1>LOG BOOK</h1>
         <h2>For all models and years cars/trucks/motorcycles</h2>
       </div>
-      <img src={profileImage} alt="vehicle outline" />
+      <div id="profile-image-container">
+        <img id="profile-image" src={profileImage} alt="vehicle outline" />
+      </div>
       <form id="auth-form" onSubmit={(e) => login(e)}>
         {emailInput}
         {passInput}
-        <input type="submit" />
+        <input type="submit" value="Login" />
       </form>
       <div id="register">
         <h3>{`Not a member? `}</h3>
