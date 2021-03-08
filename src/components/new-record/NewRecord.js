@@ -8,6 +8,7 @@ const NewRecord = (props) => {
   const [partOptions, setPartOptions] = useState([]);
   const [work, workSelect] = useSelect("Type of Work", workTypeOptions);
   const [part, partInput] = useSelect("Part", partOptions);
+  const [notes, notesInput] = useInput({ type: "text", ph: "notes" });
 
   // get the list of all drop down options relevent to this component
   useEffect(() => {
@@ -24,10 +25,11 @@ const NewRecord = (props) => {
   }, []);
 
   return (
-    <form onSubmit={(e) => props.addRecord(e, work, part, mileage)}>
+    <form onSubmit={(e) => props.addRecord(e, work, part, mileage, notes)}>
       {workSelect}
       {partInput}
       {mileageInput}
+      {notesInput}
       <input type="submit" value="Submit" />
     </form>
   );

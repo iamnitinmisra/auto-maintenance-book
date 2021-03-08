@@ -1,10 +1,8 @@
 DROP TABLE IF EXISTS auto_u_v_records;
 DROP TABLE IF EXISTS auto_work_type;
 DROP TABLE IF EXISTS auto_parts;
-DROP TABLE IF EXISTS auto_u_auth;
 DROP TABLE IF EXISTS auto_u_profiles;
 DROP TABLE IF EXISTS auto_u_vehicles;
-DROP TABLE IF EXISTS auto_u_authusers;
 DROP TABLE IF EXISTS auto_users;
 
 CREATE TABLE auto_users (
@@ -50,7 +48,8 @@ CREATE TABLE auto_u_v_records (
     vehicle_vin VARCHAR(200) REFERENCES auto_u_vehicles(vin) on delete cascade,
     work_type INT REFERENCES auto_work_type(id),
     part INT REFERENCES auto_parts(id), 
-    miles INT
+    miles INT, 
+    notes VARCHAR(5000)
 );
 
 INSERT INTO auto_work_type (work_type)

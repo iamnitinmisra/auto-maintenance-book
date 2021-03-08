@@ -8,7 +8,6 @@ const Nav = (props) => {
   const logout = () => {
     axios.get("/auth/logout").then((r) => props.history.push("/auth"));
   };
-  console.log(props);
 
   return (
     <div>

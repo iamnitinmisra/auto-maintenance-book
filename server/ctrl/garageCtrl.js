@@ -34,9 +34,9 @@ module.exports = {
 
   addVehicleRecord: (req, res) => {
     const db = req.app.get("db");
-    const { vin, workType, part, mileage } = req.body;
+    const { vin, workType, part, mileage, notes } = req.body;
     db.garage
-      .add_vehicle_record(vin, workType, part, mileage)
+      .add_vehicle_record(vin, workType, part, mileage, notes)
       .then((newRecord) => {
         db.garage.get_vehicle_records(vin).then((records) => {
           if (records.length) {
@@ -68,6 +68,7 @@ module.exports = {
     const db = req.app.get("db");
     const { vin } = req.query;
     db.garage.get_vehicle_records(vin).then((records) => {
+      console.log(records);
       res.status(200).send(records);
     });
   },

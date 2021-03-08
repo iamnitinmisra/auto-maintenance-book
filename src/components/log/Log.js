@@ -15,14 +15,13 @@ const Log = (props) => {
   }, [vin]);
 
   // add the new record to the database
-  const addRecord = async (e, workType, part, mileage) => {
+  const addRecord = async (e, workType, part, mileage, notes) => {
     e.preventDefault();
-    const details = { vin, workType, part, mileage };
+    const details = { vin, workType, part, mileage, notes };
     const newRecord = await axios.post("/garage/record", details);
     console.log(newRecord.data);
     setCarRecords(newRecord.data);
   };
-  console.log(carRecords);
   // map over the list of records for a specific vehicle
   const mappedLog = carRecords.map((entry) => {
     return (
@@ -31,6 +30,7 @@ const Log = (props) => {
         <div>Category: {entry.category}</div>
         <div>Part: {entry.name}</div>
         <div>Miles: {entry.miles}</div>
+        <div>Notes: {entry.notes}</div>
       </div>
     );
   });
