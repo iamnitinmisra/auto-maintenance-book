@@ -8,8 +8,7 @@ h2 {
 
 #auth-container {
   height: 100vh;
-  /* display: flex; */
-  /* flex-direction: column; */
+
   background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
     linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
     linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,

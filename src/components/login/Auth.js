@@ -28,8 +28,9 @@ const Auth = (props) => {
   return (
     <div id="auth-container">
       <div className="main-title">
-        <h1>VEHICLE</h1> <h1> MAINTENANCE </h1> <h1>LOG BOOK</h1>
-        <h2>For all models and years cars/trucks/motorcycles</h2>
+        <h1>VEHICLE</h1> <h1>MAINTENANCE</h1> <h1>LOG BOOK</h1>
+        <h2>For all models and years</h2>
+        <h2>cars/trucks/motorcycles</h2>
       </div>
       <div id="profile-image-container">
         <img id="profile-image" src={profileImage} alt="vehicle outline" />
