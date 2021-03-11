@@ -41,7 +41,7 @@ const Auth = (props) => {
         <input type="submit" value="Login" />
       </form>
       <div id="register">
-        <h3>{`Not a member? `}</h3>
+        <h3>{`Not a member?`}</h3>
         <Link to="/register">
           <div>Register</div>
         </Link>
