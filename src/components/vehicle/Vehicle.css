@@ -1,3 +1,5 @@
 .vehicle {
-  border: 1px solid black;
+  border: 1px dashed grey;
+  margin: 10px;
+  /* display: inline; */
 }

@@ -13,7 +13,7 @@ const Nav = (props) => {
   };
 
   return (
-    <div id="nav-wrapper">
+    <div id="nav-wrapper" className="wFont">
       <div>Vehicle Maintenance Log</div>
       <div onClick={logout}>logout</div>
     </div>

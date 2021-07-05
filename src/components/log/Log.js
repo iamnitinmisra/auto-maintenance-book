@@ -36,12 +36,12 @@ const Log = (props) => {
   });
 
   return (
-    <div>
+    <div className="wFont">
       <div>
         <div>Add a Record</div>
         <NewRecord addRecord={addRecord} />
       </div>
-      <div>Maintenance Log</div>
+      <div>Maintenance Log for VIN {vin}</div>
       {mappedLog}
     </div>
   );

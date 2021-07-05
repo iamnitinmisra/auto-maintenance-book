@@ -135,6 +135,7 @@ html {
 
 * {
   box-sizing: inherit;
+  /* color: white; */
 }
 
 .App {
@@ -155,4 +156,8 @@ html {
   background-color: #131313;
   background-size: 20px 20px;
   height: 100vh;
+}
+
+.wFont {
+  color: white;
 }

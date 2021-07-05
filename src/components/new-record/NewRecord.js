@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useInput, useSelect } from "../../Hooks";
+import "./NewRecord.css";
 
 const NewRecord = (props) => {
   const [mileage, mileageInput] = useInput({ type: "number", ph: "mileage" });
@@ -26,11 +27,13 @@ const NewRecord = (props) => {
 
   return (
     <form onSubmit={(e) => props.addRecord(e, work, part, mileage, notes)}>
-      {workSelect}
-      {partInput}
-      {mileageInput}
-      {notesInput}
-      <input type="submit" value="Submit" />
+      <ul>
+        <li>{workSelect}</li>
+        <li>{partInput}</li>
+        <li>{mileageInput}</li>
+        <li>{notesInput}</li>
+      </ul>
+      <input id="submit-button" type="submit" value="Submit" />
     </form>
   );
 };
