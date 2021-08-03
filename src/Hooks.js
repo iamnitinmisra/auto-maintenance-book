@@ -7,14 +7,16 @@ export function useInput({ type, ph, cName }) {
   const [value, setValue] = useState("");
 
   const input = (
-    <input
-      className={cName}
-      value={value}
-      placeholder={ph}
-      onChange={(e) => setValue(e.target.value)}
-      type={type}
-      min="1"
-    />
+    <div className={cName}>
+      <input
+        id={"input-a"}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        type={type}
+        min="1"
+      />
+      <label for="input-a"> {ph} </label>
+    </div>
   );
   return [value, input];
 }

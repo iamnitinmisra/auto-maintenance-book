@@ -1,0 +1,76 @@
+.fancy-input {
+  width: 200px;
+  margin: 0 auto;
+  font-family: Lato;
+  font-size: 1.2em;
+
+  input {
+    width: 200px;
+    height: 40px;
+    // margin-top: 80px;
+    font-family: Lato;
+    font-size: 0.8em;
+    background-color: transparent;
+    border: none;
+    border-top: 3px solid #4ea5d9;
+    border-bottom: 3px solid #4ea5d9;
+    outline: none;
+    color: #4ea5d9;
+    padding-left: 10px;
+
+    &:focus + label {
+      top: -50px;
+      font-size: 0.5em;
+      transition: all 0.3s;
+    }
+  }
+
+  label {
+    display: block;
+    position: relative;
+    left: 10px;
+    top: -35px;
+    font-size: 0.8em;
+    cursor: text;
+    color: #44cfcb;
+    transition: all 0.3s;
+  }
+}
+
+#new-car-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#new-car {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  height: 27px;
+  justify-content: space-around;
+  width: 1000px;
+}
+
+#new-car-submit {
+  position: relative;
+  width: 200px;
+  top: 20px;
+  font-family: serif;
+  background-color: #4ea5d9;
+  color: black;
+  border: 0.1em solid #4ea5d9;
+  text-transform: lowercase;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+  font-style: italic;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#new-car-submit:hover {
+  letter-spacing: 3px;
+  color: #4ea5d9;
+  background: black;
+}

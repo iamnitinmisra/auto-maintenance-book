@@ -5,11 +5,11 @@ import "./NewRecord.css";
 
 const NewRecord = (props) => {
   const [mileage, mileageInput] = useInput({ type: "number", ph: "mileage" });
+  const [notes, notesInput] = useInput({ type: "text", ph: "notes" });
   const [workTypeOptions, setWorkTypeOptions] = useState([]);
   const [partOptions, setPartOptions] = useState([]);
   const [work, workSelect] = useSelect("Type of Work", workTypeOptions);
   const [part, partInput] = useSelect("Part", partOptions);
-  const [notes, notesInput] = useInput({ type: "text", ph: "notes" });
 
   // get the list of all drop down options relevent to this component
   useEffect(() => {
