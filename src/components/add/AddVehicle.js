@@ -26,14 +26,14 @@ const AddVehicle = (props) => {
   let newCar = { make, model, year, VIN };
 
   return (
-    <form onSubmit={(e) => props.createCar(e, newCar)} id="new-car-form">
+    <form onSubmit={(e) => props.createCar(e, newCar)} className="flex">
       <div id="new-car">
         {makeInput}
         {modelInput}
         {yearInput}
         {vinInput}
       </div>
-      <input type="submit" id="new-car-submit" />
+      <input type="submit" className="submit top30" />
     </form>
   );
 };

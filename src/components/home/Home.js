@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddVehicle from "../add/AddVehicle";
 import Vehicle from "../vehicle/Vehicle";
+import "./Home.css";
 
 function Home() {
   const [garageCars, setGarageCars] = useState([]);
@@ -33,10 +34,12 @@ function Home() {
   });
 
   return (
-    <div id="home-container">
+    <div>
       <AddVehicle createCar={createCar} />
-      <div>Your Vehicle's</div>
-      <div>{vehicles}</div>
+      <div id="home-container">
+        <div className="wFont">Your Vehicle's</div>
+        <div>{vehicles}</div>
+      </div>
     </div>
   );
 }

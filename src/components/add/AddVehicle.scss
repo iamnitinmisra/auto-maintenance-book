@@ -37,7 +37,7 @@
   }
 }
 
-#new-car-form {
+.flex {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,10 +52,10 @@
   width: 1000px;
 }
 
-#new-car-submit {
+.submit {
   position: relative;
   width: 200px;
-  top: 20px;
+  // top: 20px;
   font-family: serif;
   background-color: #4ea5d9;
   color: black;
@@ -69,8 +69,12 @@
   font-size: 1rem;
 }
 
-#new-car-submit:hover {
+.submit:hover {
   letter-spacing: 3px;
   color: #4ea5d9;
   background: black;
+}
+
+.top30 {
+  top: 30px;
 }

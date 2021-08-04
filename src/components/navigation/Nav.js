@@ -1,5 +1,6 @@
 import axios from "axios";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { setUser } from "../../redux/reducers/userReducer";
 import { withRouter } from "react-router";
 import "./Nav.css";
@@ -14,8 +15,12 @@ const Nav = (props) => {
 
   return (
     <div id="nav-wrapper" className="wFont">
-      <div>Vehicle Maintenance Log</div>
-      <div onClick={logout}>logout</div>
+      <Link className="no-decoration" to="/">
+        <div>Vehicle Maintenance Log</div>
+      </Link>
+      <div onClick={logout} className="cursor">
+        logout
+      </div>
     </div>
   );
 };

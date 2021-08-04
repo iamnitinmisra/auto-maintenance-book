@@ -8,8 +8,16 @@ import "./Auth.css";
 import profileImage from "../../assets/miata-profile.png";
 
 const Auth = (props) => {
-  const [email, emailInput] = useInput({ type: "text", ph: "email" });
-  const [pw, passInput] = useInput({ type: "password", ph: "password" });
+  const [email, emailInput] = useInput({
+    type: "text",
+    ph: "email",
+    cName: "fancy-input",
+  });
+  const [pw, passInput] = useInput({
+    type: "password",
+    ph: "password",
+    cName: "fancy-input",
+  });
 
   //check to see if user is logged in, if so push to home page
   useEffect(() => {
@@ -38,10 +46,10 @@ const Auth = (props) => {
       <form id="auth-form" onSubmit={(e) => login(e)}>
         {emailInput}
         {passInput}
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" className="submit" />
       </form>
       <div id="register">
-        <h3>{`Not a member?`}</h3>
+        <h3>{`Not a member? `}</h3>
         <Link to="/register">
           <div>Register</div>
         </Link>

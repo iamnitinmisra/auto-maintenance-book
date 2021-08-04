@@ -4,8 +4,16 @@ import { useInput, useSelect } from "../../Hooks";
 import "./NewRecord.css";
 
 const NewRecord = (props) => {
-  const [mileage, mileageInput] = useInput({ type: "number", ph: "mileage" });
-  const [notes, notesInput] = useInput({ type: "text", ph: "notes" });
+  const [mileage, mileageInput] = useInput({
+    type: "number",
+    ph: "mileage",
+    cName: "fancy-input",
+  });
+  const [notes, notesInput] = useInput({
+    type: "text",
+    ph: "notes",
+    cName: "fancy-input",
+  });
   const [workTypeOptions, setWorkTypeOptions] = useState([]);
   const [partOptions, setPartOptions] = useState([]);
   const [work, workSelect] = useSelect("Type of Work", workTypeOptions);
@@ -26,14 +34,17 @@ const NewRecord = (props) => {
   }, []);
 
   return (
-    <form onSubmit={(e) => props.addRecord(e, work, part, mileage, notes)}>
+    <form
+      onSubmit={(e) => props.addRecord(e, work, part, mileage, notes)}
+      className="flex"
+    >
       <ul>
         <li>{workSelect}</li>
         <li>{partInput}</li>
         <li>{mileageInput}</li>
         <li>{notesInput}</li>
       </ul>
-      <input id="submit-button" type="submit" value="Submit" />
+      <input type="submit" value="Submit" className="submit" />
     </form>
   );
 };

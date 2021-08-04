@@ -1,3 +1,8 @@
 .wFont {
   color: white;
 }
+
+#home-container {
+  position: relative;
+  top: 45px;
+}

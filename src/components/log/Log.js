@@ -37,7 +37,7 @@ const Log = (props) => {
 
   return (
     <div className="wFont">
-      <div>
+      <div className="flex">
         <div>Add a Record</div>
         <NewRecord addRecord={addRecord} />
       </div>
